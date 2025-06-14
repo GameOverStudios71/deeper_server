@@ -7,7 +7,14 @@ defmodule DeeperServerWeb.Api.V1.ContentTypeController do
   action_fallback DeeperServerWeb.Api.V1.FallbackController
 
   def index(conn, params) do
-    {content_types, pagination} = Content.list_content_types(params)
+    result = Content.list_content_types(params)
+
+    {content_types, pagination} =
+      case result do
+        {list, page_info} -> {list, page_info}
+        list when is_list(list) -> {list, nil}
+        _ -> {[], nil}
+      end
 
     conn
     |> put_view(json: DeeperServerWeb.Api.V1.ContentTypeJSON)

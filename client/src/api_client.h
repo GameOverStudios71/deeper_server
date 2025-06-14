@@ -30,7 +30,8 @@ public:
     // Requisições básicas
     void get_users(StatusCallback callback);
     void get_roles(StatusCallback callback);
-    void get_content_types(StatusCallback callback);
+        void get_content_types(StatusCallback callback);
+    void get_entries_for_content_type(const std::string& content_type_id, StatusCallback callback);
     
     // Utilitários
     std::string get_last_error() const;

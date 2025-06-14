@@ -115,6 +115,22 @@ void ApiClient::get_roles(StatusCallback callback) {
     handle_response(result, callback);
 }
 
+void ApiClient::get_entries_for_content_type(const std::string& content_type_id, StatusCallback callback) {
+    if (!is_authenticated()) {
+        callback(false, "Não autenticado");
+        return;
+    }
+
+    httplib::Headers headers;
+    set_auth_header(headers);
+
+    std::string path = "/api/v1/content_types/" + content_type_id + "/entries";
+    AddLog("DEBUG", "GET " + path);
+
+    auto result = client->Get(path.c_str(), headers);
+    handle_response(result, callback);
+}
+
 void ApiClient::get_content_types(StatusCallback callback) {
     if (!is_authenticated()) {
         callback(false, "Não autenticado");

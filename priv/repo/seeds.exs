@@ -1,4 +1,50 @@
-# Script for populating the database. You can run it as:
+# Script for populating the database.
+
+alias DeeperServer.Repo
+alias DeeperServer.Accounts.{Role, User}
+alias DeeperServer.Content.ContentType
+
+# Cria a role de Administrador se não existir
+case Repo.get_by(Role, name: "admin") do
+  nil ->
+    {:ok, _role} = Repo.insert(%Role{name: "admin", description: "Administrador do sistema"})
+  role ->
+    IO.puts "Role 'admin' já existe."
+end
+
+# Pega a role de admin para associar ao usuário
+admin_role = Repo.get_by(Role, name: "admin")
+
+# Cria o usuário administrador se não existir
+case Repo.get_by(User, email: "admin@example.com") do
+  nil ->
+    user_params = %{
+      email: "admin@example.com",
+      password: "password123",
+      role_id: admin_role.id,
+      confirmed_at: NaiveDateTime.utc_now()
+    }
+    DeeperServer.Accounts.register_user(user_params)
+  _ ->
+    IO.puts "Usuário 'admin@example.com' já existe."
+end
+
+# Cria tipos de conteúdo padrão
+content_types = [
+  %{name: "Post", slug: "post", description: "Para artigos e notícias."},
+  %{name: "Página", slug: "page", description: "Para páginas estáticas como 'Sobre' ou 'Contato'."}
+]
+
+Enum.each(content_types, fn ct_params ->
+  case Repo.get_by(ContentType, slug: ct_params.slug) do
+    nil ->
+      {:ok, _ct} = Repo.insert(%ContentType{name: ct_params.name, slug: ct_params.slug, description: ct_params.description})
+    _ ->
+      IO.puts "Content type '#{ct_params.name}' já existe."
+  end
+end)
+
+IO.puts "Banco de dados populado com sucesso!"
 #
 #     mix run priv/repo/seeds.exs
 #

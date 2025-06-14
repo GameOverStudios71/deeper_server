@@ -9,6 +9,10 @@
 
 // Include da nossa API
 #include "api_client.h"
+#include "nlohmann/json.hpp"
+
+// Alias para o nlohmann::json para facilitar
+using json = nlohmann::json;
 
 // Sistema de Debug/Logging
 #include <vector>
@@ -54,6 +58,120 @@ static char email_buffer[256] = "admin@example.com";
 static char password_buffer[256] = "password123";
 static std::string status_message = "";
 static bool show_login = true;
+
+// Novas variáveis para a tela de conteúdo
+static bool show_content_window = true; // Começa visível por padrão
+static bool content_types_loaded = false;
+static json content_types_json;
+static json entries_json;
+static int selected_content_type_idx = -1;
+static std::string selected_content_type_id = "";
+static std::string content_status_message = "";
+
+// Função para renderizar a janela de gerenciamento de conteúdo
+void ShowContentWindow() {
+    ImGui::Begin("Gerenciador de Conteúdo", &show_content_window);
+
+    // Carregar os tipos de conteúdo na primeira vez que a janela é aberta ou após o login
+    if (!content_types_loaded) {
+        content_status_message = "Carregando tipos de conteúdo...";
+        AddLog("INFO", content_status_message);
+        api_client.get_content_types([](bool success, const std::string& response) {
+            if (success) {
+                try {
+                    content_types_json = json::parse(response);
+                    content_status_message = "Tipos de conteúdo carregados com sucesso.";
+                    AddLog("SUCCESS", content_status_message);
+                } catch (const json::parse_error& e) {
+                    content_status_message = "Erro ao processar JSON de tipos de conteúdo: " + std::string(e.what());
+                    AddLog("ERROR", content_status_message);
+                }
+            } else {
+                content_status_message = "Erro ao carregar tipos de conteúdo: " + response;
+                AddLog("ERROR", content_status_message);
+            }
+        });
+        content_types_loaded = true; // Evita recarregar a cada frame
+    }
+
+    // Layout de duas colunas
+    ImGui::Columns(2, "ContentColumns", false);
+    ImGui::SetColumnWidth(0, 250.0f);
+
+    // --- Coluna da Esquerda: Tipos de Conteúdo ---
+    ImGui::Text("Tipos de Conteúdo");
+    ImGui::Separator();
+    ImGui::BeginChild("ContentTypesRegion", ImVec2(0, -ImGui::GetFrameHeightWithSpacing() - 5), true);
+
+    if (content_types_json.is_array()) {
+        for (int i = 0; i < content_types_json.size(); ++i) {
+            const auto& ct = content_types_json[i];
+            std::string name = ct.value("name", "Sem nome");
+            if (ImGui::Selectable(name.c_str(), selected_content_type_idx == i)) {
+                if (selected_content_type_idx != i) {
+                    selected_content_type_idx = i;
+                    selected_content_type_id = ct.value("id", "");
+                    content_status_message = "Carregando entradas para: " + name;
+                    AddLog("INFO", content_status_message);
+                    entries_json.clear(); // Limpa entradas antigas
+
+                    api_client.get_entries_for_content_type(selected_content_type_id, [](bool success, const std::string& response) {
+                        if (success) {
+                            try {
+                                entries_json = json::parse(response);
+                                content_status_message = "Entradas carregadas.";
+                                AddLog("SUCCESS", content_status_message);
+                            } catch (const json::parse_error& e) {
+                                content_status_message = "Erro ao processar JSON de entradas: " + std::string(e.what());
+                                AddLog("ERROR", content_status_message);
+                            }
+                        } else {
+                            content_status_message = "Erro ao carregar entradas: " + response;
+                            AddLog("ERROR", content_status_message);
+                        }
+                    });
+                }
+            }
+        }
+    }
+    ImGui::EndChild();
+
+    ImGui::NextColumn();
+
+    // --- Coluna da Direita: Entradas ---
+    ImGui::Text("Entradas");
+    ImGui::Separator();
+    ImGui::BeginChild("EntriesRegion", ImVec2(0, -ImGui::GetFrameHeightWithSpacing() - 5), true);
+
+    if (entries_json.is_array() && !entries_json.empty()) {
+        if (ImGui::BeginTable("EntriesTable", 2, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg | ImGuiTableFlags_Resizable)) {
+            ImGui::TableSetupColumn("Título");
+            ImGui::TableSetupColumn("Status", ImGuiTableColumnFlags_WidthFixed, 80.0f);
+            ImGui::TableHeadersRow();
+
+            for (const auto& entry : entries_json) {
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
+                ImGui::Text("%s", entry.value("title", "Sem Título").c_str());
+                ImGui::TableSetColumnIndex(1);
+                ImGui::Text("%s", entry.value("status", "-").c_str());
+            }
+            ImGui::EndTable();
+        }
+    } else if (selected_content_type_idx != -1) {
+        ImGui::Text("Nenhuma entrada encontrada para este tipo.");
+    } else {
+        ImGui::Text("Selecione um Tipo de Conteúdo à esquerda.");
+    }
+
+    ImGui::EndChild();
+    
+    ImGui::Columns(1);
+    ImGui::Separator();
+    ImGui::TextWrapped("%s", content_status_message.c_str());
+
+    ImGui::End();
+}
 
 int main() {
     // Inicializa o GLFW
@@ -135,38 +253,38 @@ int main() {
 
             ImGui::End();
         } else {
-            // Interface principal (após login)
-            ImGui::Begin("Deeper Client - CMS Admin");
-
-            ImGui::Text("Bem-vindo ao Deeper Client!");
-            ImGui::Text("Conectado com sucesso!");
-
-            if (ImGui::Button("Listar Usuários")) {
-                AddLog("INFO", "Solicitando lista de usuários...");
-                api_client.get_users([](bool success, const std::string& response) {
-                    if (success) {
-                        AddLog("SUCCESS", "Lista de usuários recebida (" + std::to_string(response.length()) + " bytes)");
-                        status_message = "Usuários carregados: " + response.substr(0, 100) + "...";
-                    } else {
-                        AddLog("ERROR", "Erro ao carregar usuários: " + response);
-                        status_message = "Erro: " + response;
+            // --- Interface Principal (após login) ---
+            if (ImGui::BeginMainMenuBar()) {
+                if (ImGui::BeginMenu("Arquivo")) {
+                    if (ImGui::MenuItem("Logout")) {
+                        AddLog("INFO", "Logout realizado");
+                        api_client.logout();
+                        show_login = true;
+                        status_message = "";
+                        // Reseta o estado do conteúdo
+                        content_types_loaded = false;
+                        content_types_json.clear();
+                        entries_json.clear();
+                        selected_content_type_idx = -1;
+                        selected_content_type_id = "";
+                        content_status_message = "";
                     }
-                });
+                    ImGui::EndMenu();
+                }
+                if (ImGui::BeginMenu("Visualizar")) {
+                    ImGui::MenuItem("Gerenciador de Conteúdo", NULL, &show_content_window);
+                    // Futuramente: ImGui::MenuItem("Gerenciador de Mídia", NULL, &show_media_window);
+                }
+                ImGui::EndMainMenuBar();
             }
 
-            ImGui::SameLine();
-            if (ImGui::Button("Logout")) {
-                AddLog("INFO", "Logout realizado");
-                api_client.logout();
-                show_login = true;
-                status_message = "";
+            // Renderiza as janelas principais
+            if (show_content_window) {
+                ShowContentWindow();
             }
 
-            if (!status_message.empty()) {
-                ImGui::TextWrapped("%s", status_message.c_str());
-            }
-
-            ImGui::End();
+            // A janela de conteúdo é agora controlada pelo menu "Visualizar".
+            // A janela de debug continua a ser renderizada separadamente.
         }
 
         // --- Painel de Debug (sempre visível) ---
