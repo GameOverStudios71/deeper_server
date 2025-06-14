@@ -7,10 +7,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # --- Dependências (Configuração Manual) ---
 set(GLFW_DIR ${CMAKE_CURRENT_SOURCE_DIR}/vendor/GLFW)
 set(IMGUI_DIR ${CMAKE_CURRENT_SOURCE_DIR}/vendor/imgui)
+set(HTTPLIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/vendor/cpp-httplib)
+set(JSON_DIR ${CMAKE_CURRENT_SOURCE_DIR}/vendor/json)
 
 # 1. Cria o executável
 add_executable(deeper_client
     src/main.cpp
+    src/api_client.cpp
 
     # Adiciona os arquivos-fonte da ImGui ao nosso executável
     ${IMGUI_DIR}/imgui.cpp
@@ -22,10 +25,12 @@ add_executable(deeper_client
 )
 
 # 2. Configura o alvo "deeper_client"
-target_include_directories(deeper_client PRIVATE 
+target_include_directories(deeper_client PRIVATE
     ${GLFW_DIR}/include
     ${IMGUI_DIR}
     ${IMGUI_DIR}/backends
+    ${HTTPLIB_DIR}
+    ${JSON_DIR}/include
 )
 
 target_link_libraries(deeper_client PRIVATE 
@@ -33,5 +38,5 @@ target_link_libraries(deeper_client PRIVATE
 )
 
 if (WIN32)
-    target_link_libraries(deeper_client PRIVATE opengl32 gdi32)
+    target_link_libraries(deeper_client PRIVATE opengl32 gdi32 ws2_32 wininet)
 endif()

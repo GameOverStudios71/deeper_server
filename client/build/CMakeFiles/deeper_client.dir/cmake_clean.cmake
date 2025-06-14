@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/deeper_client.dir/src/api_client.cpp.obj"
+  "CMakeFiles/deeper_client.dir/src/api_client.cpp.obj.d"
   "CMakeFiles/deeper_client.dir/src/main.cpp.obj"
   "CMakeFiles/deeper_client.dir/src/main.cpp.obj.d"
   "CMakeFiles/deeper_client.dir/vendor/imgui/backends/imgui_impl_glfw.cpp.obj"

@@ -128,6 +128,30 @@ deeper_client/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\deeper_client.dir\build.make CMakeFiles/deeper_client.dir/build
 .PHONY : deeper_client/fast
 
+src/api_client.obj: src/api_client.cpp.obj
+.PHONY : src/api_client.obj
+
+# target to build an object file
+src/api_client.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deeper_client.dir\build.make CMakeFiles/deeper_client.dir/src/api_client.cpp.obj
+.PHONY : src/api_client.cpp.obj
+
+src/api_client.i: src/api_client.cpp.i
+.PHONY : src/api_client.i
+
+# target to preprocess a source file
+src/api_client.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deeper_client.dir\build.make CMakeFiles/deeper_client.dir/src/api_client.cpp.i
+.PHONY : src/api_client.cpp.i
+
+src/api_client.s: src/api_client.cpp.s
+.PHONY : src/api_client.s
+
+# target to generate assembly for a file
+src/api_client.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\deeper_client.dir\build.make CMakeFiles/deeper_client.dir/src/api_client.cpp.s
+.PHONY : src/api_client.cpp.s
+
 src/main.obj: src/main.cpp.obj
 .PHONY : src/main.obj
 
@@ -305,6 +329,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... deeper_client
+	@echo ... src/api_client.obj
+	@echo ... src/api_client.i
+	@echo ... src/api_client.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s

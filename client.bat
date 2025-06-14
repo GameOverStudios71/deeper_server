@@ -2,9 +2,6 @@
 echo Navegando para a pasta do cliente...
 cd client
 
-echo Limpando builds anteriores (se existirem)...
-if exist build rmdir /s /q build
-
 echo Configurando o projeto com CMake...
 cmake -B build -G "MinGW Makefiles"
 if %errorlevel% neq 0 (
@@ -27,7 +24,7 @@ if %errorlevel% neq 0 (
 )
 
 echo Executando o cliente...
-start "" "build\deeper_client.exe"
+build\deeper_client.exe
 
 echo Voltando para o diretorio raiz...
 cd ..
@@ -35,5 +32,3 @@ cd ..
 :eof
 echo.
 echo Script finalizado.
-
-cd ..

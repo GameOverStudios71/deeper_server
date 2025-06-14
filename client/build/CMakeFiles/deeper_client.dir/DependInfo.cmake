@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "C:/deeper_server/client/src/api_client.cpp" "CMakeFiles/deeper_client.dir/src/api_client.cpp.obj" "gcc" "CMakeFiles/deeper_client.dir/src/api_client.cpp.obj.d"
   "C:/deeper_server/client/src/main.cpp" "CMakeFiles/deeper_client.dir/src/main.cpp.obj" "gcc" "CMakeFiles/deeper_client.dir/src/main.cpp.obj.d"
   "C:/deeper_server/client/vendor/imgui/backends/imgui_impl_glfw.cpp" "CMakeFiles/deeper_client.dir/vendor/imgui/backends/imgui_impl_glfw.cpp.obj" "gcc" "CMakeFiles/deeper_client.dir/vendor/imgui/backends/imgui_impl_glfw.cpp.obj.d"
   "C:/deeper_server/client/vendor/imgui/backends/imgui_impl_opengl2.cpp" "CMakeFiles/deeper_client.dir/vendor/imgui/backends/imgui_impl_opengl2.cpp.obj" "gcc" "CMakeFiles/deeper_client.dir/vendor/imgui/backends/imgui_impl_opengl2.cpp.obj.d"

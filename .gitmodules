@@ -1,3 +1,9 @@
 [submodule "client/vendor/imgui"]
 	path = client/vendor/imgui
 	url = https://github.com/ocornut/imgui.git
+[submodule "client/vendor/cpp-httplib"]
+	path = client/vendor/cpp-httplib
+	url = https://github.com/yhirose/cpp-httplib.git
+[submodule "client/vendor/json"]
+	path = client/vendor/json
+	url = https://github.com/nlohmann/json.git

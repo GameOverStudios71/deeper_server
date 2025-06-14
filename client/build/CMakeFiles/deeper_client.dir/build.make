@@ -86,11 +86,26 @@ CMakeFiles/deeper_client.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/deeper_client.dir/src/main.cpp.s"
 	C:\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\deeper_server\client\src\main.cpp -o CMakeFiles\deeper_client.dir\src\main.cpp.s
 
+CMakeFiles/deeper_client.dir/src/api_client.cpp.obj: CMakeFiles/deeper_client.dir/flags.make
+CMakeFiles/deeper_client.dir/src/api_client.cpp.obj: CMakeFiles/deeper_client.dir/includes_CXX.rsp
+CMakeFiles/deeper_client.dir/src/api_client.cpp.obj: C:/deeper_server/client/src/api_client.cpp
+CMakeFiles/deeper_client.dir/src/api_client.cpp.obj: CMakeFiles/deeper_client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\deeper_server\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/deeper_client.dir/src/api_client.cpp.obj"
+	C:\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/deeper_client.dir/src/api_client.cpp.obj -MF CMakeFiles\deeper_client.dir\src\api_client.cpp.obj.d -o CMakeFiles\deeper_client.dir\src\api_client.cpp.obj -c C:\deeper_server\client\src\api_client.cpp
+
+CMakeFiles/deeper_client.dir/src/api_client.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/deeper_client.dir/src/api_client.cpp.i"
+	C:\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\deeper_server\client\src\api_client.cpp > CMakeFiles\deeper_client.dir\src\api_client.cpp.i
+
+CMakeFiles/deeper_client.dir/src/api_client.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/deeper_client.dir/src/api_client.cpp.s"
+	C:\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\deeper_server\client\src\api_client.cpp -o CMakeFiles\deeper_client.dir\src\api_client.cpp.s
+
 CMakeFiles/deeper_client.dir/vendor/imgui/imgui.cpp.obj: CMakeFiles/deeper_client.dir/flags.make
 CMakeFiles/deeper_client.dir/vendor/imgui/imgui.cpp.obj: CMakeFiles/deeper_client.dir/includes_CXX.rsp
 CMakeFiles/deeper_client.dir/vendor/imgui/imgui.cpp.obj: C:/deeper_server/client/vendor/imgui/imgui.cpp
 CMakeFiles/deeper_client.dir/vendor/imgui/imgui.cpp.obj: CMakeFiles/deeper_client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\deeper_server\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/deeper_client.dir/vendor/imgui/imgui.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\deeper_server\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/deeper_client.dir/vendor/imgui/imgui.cpp.obj"
 	C:\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/deeper_client.dir/vendor/imgui/imgui.cpp.obj -MF CMakeFiles\deeper_client.dir\vendor\imgui\imgui.cpp.obj.d -o CMakeFiles\deeper_client.dir\vendor\imgui\imgui.cpp.obj -c C:\deeper_server\client\vendor\imgui\imgui.cpp
 
 CMakeFiles/deeper_client.dir/vendor/imgui/imgui.cpp.i: cmake_force
@@ -105,7 +120,7 @@ CMakeFiles/deeper_client.dir/vendor/imgui/imgui_draw.cpp.obj: CMakeFiles/deeper_
 CMakeFiles/deeper_client.dir/vendor/imgui/imgui_draw.cpp.obj: CMakeFiles/deeper_client.dir/includes_CXX.rsp
 CMakeFiles/deeper_client.dir/vendor/imgui/imgui_draw.cpp.obj: C:/deeper_server/client/vendor/imgui/imgui_draw.cpp
 CMakeFiles/deeper_client.dir/vendor/imgui/imgui_draw.cpp.obj: CMakeFiles/deeper_client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\deeper_server\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/deeper_client.dir/vendor/imgui/imgui_draw.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\deeper_server\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/deeper_client.dir/vendor/imgui/imgui_draw.cpp.obj"
 	C:\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/deeper_client.dir/vendor/imgui/imgui_draw.cpp.obj -MF CMakeFiles\deeper_client.dir\vendor\imgui\imgui_draw.cpp.obj.d -o CMakeFiles\deeper_client.dir\vendor\imgui\imgui_draw.cpp.obj -c C:\deeper_server\client\vendor\imgui\imgui_draw.cpp
 
 CMakeFiles/deeper_client.dir/vendor/imgui/imgui_draw.cpp.i: cmake_force
@@ -120,7 +135,7 @@ CMakeFiles/deeper_client.dir/vendor/imgui/imgui_tables.cpp.obj: CMakeFiles/deepe
 CMakeFiles/deeper_client.dir/vendor/imgui/imgui_tables.cpp.obj: CMakeFiles/deeper_client.dir/includes_CXX.rsp
 CMakeFiles/deeper_client.dir/vendor/imgui/imgui_tables.cpp.obj: C:/deeper_server/client/vendor/imgui/imgui_tables.cpp
 CMakeFiles/deeper_client.dir/vendor/imgui/imgui_tables.cpp.obj: CMakeFiles/deeper_client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\deeper_server\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/deeper_client.dir/vendor/imgui/imgui_tables.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\deeper_server\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/deeper_client.dir/vendor/imgui/imgui_tables.cpp.obj"
 	C:\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/deeper_client.dir/vendor/imgui/imgui_tables.cpp.obj -MF CMakeFiles\deeper_client.dir\vendor\imgui\imgui_tables.cpp.obj.d -o CMakeFiles\deeper_client.dir\vendor\imgui\imgui_tables.cpp.obj -c C:\deeper_server\client\vendor\imgui\imgui_tables.cpp
 
 CMakeFiles/deeper_client.dir/vendor/imgui/imgui_tables.cpp.i: cmake_force
@@ -135,7 +150,7 @@ CMakeFiles/deeper_client.dir/vendor/imgui/imgui_widgets.cpp.obj: CMakeFiles/deep
 CMakeFiles/deeper_client.dir/vendor/imgui/imgui_widgets.cpp.obj: CMakeFiles/deeper_client.dir/includes_CXX.rsp
 CMakeFiles/deeper_client.dir/vendor/imgui/imgui_widgets.cpp.obj: C:/deeper_server/client/vendor/imgui/imgui_widgets.cpp
 CMakeFiles/deeper_client.dir/vendor/imgui/imgui_widgets.cpp.obj: CMakeFiles/deeper_client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\deeper_server\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/deeper_client.dir/vendor/imgui/imgui_widgets.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\deeper_server\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/deeper_client.dir/vendor/imgui/imgui_widgets.cpp.obj"
 	C:\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/deeper_client.dir/vendor/imgui/imgui_widgets.cpp.obj -MF CMakeFiles\deeper_client.dir\vendor\imgui\imgui_widgets.cpp.obj.d -o CMakeFiles\deeper_client.dir\vendor\imgui\imgui_widgets.cpp.obj -c C:\deeper_server\client\vendor\imgui\imgui_widgets.cpp
 
 CMakeFiles/deeper_client.dir/vendor/imgui/imgui_widgets.cpp.i: cmake_force
@@ -150,7 +165,7 @@ CMakeFiles/deeper_client.dir/vendor/imgui/backends/imgui_impl_glfw.cpp.obj: CMak
 CMakeFiles/deeper_client.dir/vendor/imgui/backends/imgui_impl_glfw.cpp.obj: CMakeFiles/deeper_client.dir/includes_CXX.rsp
 CMakeFiles/deeper_client.dir/vendor/imgui/backends/imgui_impl_glfw.cpp.obj: C:/deeper_server/client/vendor/imgui/backends/imgui_impl_glfw.cpp
 CMakeFiles/deeper_client.dir/vendor/imgui/backends/imgui_impl_glfw.cpp.obj: CMakeFiles/deeper_client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\deeper_server\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/deeper_client.dir/vendor/imgui/backends/imgui_impl_glfw.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\deeper_server\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/deeper_client.dir/vendor/imgui/backends/imgui_impl_glfw.cpp.obj"
 	C:\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/deeper_client.dir/vendor/imgui/backends/imgui_impl_glfw.cpp.obj -MF CMakeFiles\deeper_client.dir\vendor\imgui\backends\imgui_impl_glfw.cpp.obj.d -o CMakeFiles\deeper_client.dir\vendor\imgui\backends\imgui_impl_glfw.cpp.obj -c C:\deeper_server\client\vendor\imgui\backends\imgui_impl_glfw.cpp
 
 CMakeFiles/deeper_client.dir/vendor/imgui/backends/imgui_impl_glfw.cpp.i: cmake_force
@@ -165,7 +180,7 @@ CMakeFiles/deeper_client.dir/vendor/imgui/backends/imgui_impl_opengl2.cpp.obj: C
 CMakeFiles/deeper_client.dir/vendor/imgui/backends/imgui_impl_opengl2.cpp.obj: CMakeFiles/deeper_client.dir/includes_CXX.rsp
 CMakeFiles/deeper_client.dir/vendor/imgui/backends/imgui_impl_opengl2.cpp.obj: C:/deeper_server/client/vendor/imgui/backends/imgui_impl_opengl2.cpp
 CMakeFiles/deeper_client.dir/vendor/imgui/backends/imgui_impl_opengl2.cpp.obj: CMakeFiles/deeper_client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\deeper_server\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/deeper_client.dir/vendor/imgui/backends/imgui_impl_opengl2.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\deeper_server\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/deeper_client.dir/vendor/imgui/backends/imgui_impl_opengl2.cpp.obj"
 	C:\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/deeper_client.dir/vendor/imgui/backends/imgui_impl_opengl2.cpp.obj -MF CMakeFiles\deeper_client.dir\vendor\imgui\backends\imgui_impl_opengl2.cpp.obj.d -o CMakeFiles\deeper_client.dir\vendor\imgui\backends\imgui_impl_opengl2.cpp.obj -c C:\deeper_server\client\vendor\imgui\backends\imgui_impl_opengl2.cpp
 
 CMakeFiles/deeper_client.dir/vendor/imgui/backends/imgui_impl_opengl2.cpp.i: cmake_force
@@ -179,6 +194,7 @@ CMakeFiles/deeper_client.dir/vendor/imgui/backends/imgui_impl_opengl2.cpp.s: cma
 # Object files for target deeper_client
 deeper_client_OBJECTS = \
 "CMakeFiles/deeper_client.dir/src/main.cpp.obj" \
+"CMakeFiles/deeper_client.dir/src/api_client.cpp.obj" \
 "CMakeFiles/deeper_client.dir/vendor/imgui/imgui.cpp.obj" \
 "CMakeFiles/deeper_client.dir/vendor/imgui/imgui_draw.cpp.obj" \
 "CMakeFiles/deeper_client.dir/vendor/imgui/imgui_tables.cpp.obj" \
@@ -190,6 +206,7 @@ deeper_client_OBJECTS = \
 deeper_client_EXTERNAL_OBJECTS =
 
 deeper_client.exe: CMakeFiles/deeper_client.dir/src/main.cpp.obj
+deeper_client.exe: CMakeFiles/deeper_client.dir/src/api_client.cpp.obj
 deeper_client.exe: CMakeFiles/deeper_client.dir/vendor/imgui/imgui.cpp.obj
 deeper_client.exe: CMakeFiles/deeper_client.dir/vendor/imgui/imgui_draw.cpp.obj
 deeper_client.exe: CMakeFiles/deeper_client.dir/vendor/imgui/imgui_tables.cpp.obj
@@ -201,7 +218,7 @@ deeper_client.exe: C:/deeper_server/client/vendor/GLFW/lib-mingw-w64/libglfw3.a
 deeper_client.exe: CMakeFiles/deeper_client.dir/linkLibs.rsp
 deeper_client.exe: CMakeFiles/deeper_client.dir/objects1.rsp
 deeper_client.exe: CMakeFiles/deeper_client.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\deeper_server\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable deeper_client.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\deeper_server\client\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable deeper_client.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\deeper_client.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
