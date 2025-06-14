@@ -4,24 +4,34 @@ project(DeeperClient LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# --- Dependência GLFW (Configuração Manual) ---
-
-# Define o caminho para a nossa pasta GLFW
+# --- Dependências (Configuração Manual) ---
 set(GLFW_DIR ${CMAKE_CURRENT_SOURCE_DIR}/vendor/GLFW)
+set(IMGUI_DIR ${CMAKE_CURRENT_SOURCE_DIR}/vendor/imgui)
 
 # 1. Cria o executável
-add_executable(deeper_client src/main.cpp)
+add_executable(deeper_client 
+    src/main.cpp
+    
+    # Adiciona os arquivos-fonte da ImGui ao nosso executável
+    ${IMGUI_DIR}/imgui.cpp
+    ${IMGUI_DIR}/imgui_draw.cpp
+    ${IMGUI_DIR}/imgui_tables.cpp
+    ${IMGUI_DIR}/imgui_widgets.cpp
+    ${IMGUI_DIR}/backends/imgui_impl_glfw.cpp
+    ${IMGUI_DIR}/backends/imgui_impl_opengl2.cpp
+)
 
-# 2. Agora que o alvo "deeper_client" existe, podemos configurá-lo.
+# 2. Configura o alvo "deeper_client"
+target_include_directories(deeper_client PRIVATE 
+    ${GLFW_DIR}/include
+    ${IMGUI_DIR}
+    ${IMGUI_DIR}/backends
+)
 
-# Adiciona o diretório de cabeçalhos (.h) do GLFW ao projeto
-target_include_directories(deeper_client PRIVATE ${GLFW_DIR}/include)
+target_link_libraries(deeper_client PRIVATE 
+    ${GLFW_DIR}/lib-mingw-w64/libglfw3.a
+)
 
-# Linka a biblioteca estática (.a) do GLFW - NOME CORRIGIDO AQUI
-target_link_libraries(deeper_client PRIVATE ${GLFW_DIR}/lib-mingw-w64/libglfw3.a)
-
-# Para Windows, precisamos linkar com algumas bibliotecas do sistema
 if (WIN32)
-    # Linka com a biblioteca OpenGL e a GDI (Graphics Device Interface)
     target_link_libraries(deeper_client PRIVATE opengl32 gdi32)
 endif()

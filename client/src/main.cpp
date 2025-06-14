@@ -1,6 +1,11 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
+// Includes da Dear ImGui
+#include "imgui.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl2.h"
+
 int main() {
     // Inicializa o GLFW
     if (!glfwInit()) {
@@ -14,35 +19,58 @@ int main() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 
     // Cria a janela
-    GLFWwindow* window = glfwCreateWindow(800, 600, "Deeper Client", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(1280, 720, "Deeper Client", NULL, NULL);
     if (window == NULL) {
         std::cerr << "Falha ao criar a janela GLFW" << std::endl;
         glfwTerminate();
         return -1;
     }
     glfwMakeContextCurrent(window);
+    glfwSwapInterval(1); // Ativa o V-Sync
 
-    // Loop principal (Game Loop)
-    // A janela ficará aberta, renderizando, até que o usuário a feche.
+    // --- Configuração da Dear ImGui ---
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    
+    // Configura o estilo
+    ImGui::StyleColorsDark();
+
+    // Configura os backends (bindings)
+    ImGui_ImplGlfw_InitForOpenGL(window, true);
+    ImGui_ImplOpenGL2_Init();
+
+    // Loop principal
     while (!glfwWindowShouldClose(window)) {
-        // --- Processamento de Input ---
-        // (aqui vamos lidar com teclado, mouse, etc. no futuro)
         glfwPollEvents();
 
+        // --- Inicia um novo frame da ImGui ---
+        ImGui_ImplOpenGL2_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
+
+        // --- Lógica da nossa UI ---
+        // Aqui é onde construímos a nossa interface.
+        // Por enquanto, apenas uma janela de demonstração.
+        ImGui::ShowDemoWindow(); 
+
         // --- Lógica de Renderização ---
-        // (aqui vamos desenhar nosso cenário 3D e UI no futuro)
-        
-        // Por enquanto, apenas limpamos a tela com uma cor.
-        // Este é um azul escuro.
+        glViewport(0, 0, 1280, 720);
         glClearColor(0.1f, 0.1f, 0.2f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        // --- Troca de Buffers ---
-        // Mostra na tela o que acabamos de desenhar.
+        // Renderiza a UI da ImGui
+        ImGui::Render();
+        ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
+
         glfwSwapBuffers(window);
     }
 
-    // Limpeza
+    // --- Limpeza ---
+    ImGui_ImplOpenGL2_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+    ImGui::DestroyContext();
+
     glfwDestroyWindow(window);
     glfwTerminate();
     return 0;
