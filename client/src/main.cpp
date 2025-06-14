@@ -9,10 +9,9 @@ int main() {
     }
 
     // Configura a janela (versão do OpenGL, etc.)
-    // Estamos pedindo OpenGL 3.3
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    // Pedindo OpenGL 2.1 para máxima compatibilidade com hardware antigo.
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 
     // Cria a janela
     GLFWwindow* window = glfwCreateWindow(800, 600, "Deeper Client", NULL, NULL);
