@@ -51,8 +51,17 @@ int main() {
 
         // --- Lógica da nossa UI ---
         // Aqui é onde construímos a nossa interface.
-        // Por enquanto, apenas uma janela de demonstração.
-        ImGui::ShowDemoWindow(); 
+
+        // Exemplo de janela básica
+        ImGui::Begin("Deeper Client - CMS Admin");
+        ImGui::Text("Bem-vindo ao Deeper Client!");
+        ImGui::Text("Interface pronta para desenvolvimento.");
+
+        if (ImGui::Button("Conectar ao Servidor")) {
+            // TODO: Implementar conexão com a API
+        }
+
+        ImGui::End();
 
         // --- Lógica de Renderização ---
         glViewport(0, 0, 1280, 720);

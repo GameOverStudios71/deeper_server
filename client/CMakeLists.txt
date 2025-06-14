@@ -9,9 +9,9 @@ set(GLFW_DIR ${CMAKE_CURRENT_SOURCE_DIR}/vendor/GLFW)
 set(IMGUI_DIR ${CMAKE_CURRENT_SOURCE_DIR}/vendor/imgui)
 
 # 1. Cria o executável
-add_executable(deeper_client 
+add_executable(deeper_client
     src/main.cpp
-    
+
     # Adiciona os arquivos-fonte da ImGui ao nosso executável
     ${IMGUI_DIR}/imgui.cpp
     ${IMGUI_DIR}/imgui_draw.cpp
